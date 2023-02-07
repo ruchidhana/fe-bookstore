@@ -1,0 +1,61 @@
+  <div class="global-container">
+    <div class="card login-form">
+    <div class="card-body">
+      <h3 class="card-title text-center">Log in to Codepen</h3>
+      <div class="card-text">
+        <!--
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+        <form [formGroup]="loginForm" novalidate="novalidate" id="kt_login_signin_form" (ngSubmit)="submit()">
+          <!-- to error: add class "has-danger" -->
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" formControlName="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Email is required',
+              control: loginForm.controls['email']
+            }"></ng-container>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <a href="#" style="float:right;font-size:12px;">Forgot password?</a>
+            <input type="password" name="password" formControlName="password" class="form-control form-control-sm" id="exampleInputPassword1">
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Password is required',
+              control: loginForm.controls['password']
+            }"></ng-container>
+
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'minlength',
+            message: 'Password should have at least 8 symbols',
+            control: loginForm.controls['password']
+          }"></ng-container>
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'maxlength',
+            message: 'Password should have maximum 15 symbols',
+            control: loginForm.controls['password']
+          }"></ng-container>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Sign in</button>
+
+          <div class="sign-up">
+            Don't have an account? <a routerLink="/register">Create One</a>
+          </div>
+        </form>
+
+        <ng-template #formError let-control="control" let-message="message" let-validation="validation">
+          <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+              <div class="fv-plugins-message-container">
+                  <span role="alert" style="color: red;">
+              {{ message }}
+            </span>
+              </div>
+          </ng-container>
+      </ng-template>
+      </div>
+    </div>
+  </div>
+  </div>
+
+

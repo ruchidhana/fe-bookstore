@@ -1,0 +1,71 @@
+<div class="container mt-5">
+  <div class="card">
+    <h5 class="card-header">Add a Book</h5>
+    <div class="card-body">
+      <form [formGroup]="bookAddForm" novalidate="novalidate" id="kt_login_signin_form" (ngSubmit)="submit()">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="title">Title</label>
+            <input type="text" name="title" formControlName="title" class="form-control" id="title" placeholder="Title">
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Title is required',
+              control: bookAddForm.controls['title']
+            }"></ng-container>
+          </div>
+
+
+            <div class="form-group col-md-12">
+              <label for="title">ISBN</label>
+              <input type="text" name="isbn" formControlName="isbn" class="form-control" id="isbn" placeholder="ISBN">
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Title is required',
+                control: bookAddForm.controls['title']
+              }"></ng-container>
+            </div>
+          <div class="form-group col-md-12">
+            <label for="description">Description</label>
+            <textarea type="text" name="description" formControlName="description" class="form-control" id="description" placeholder="Description"></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputAddress2">Price</label>
+            <input type="number" name="price" formControlName="price" class="form-control" id="inputAddress2" placeholder="Price (Rs.)">
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Price is required',
+              control: bookAddForm.controls['price']
+            }"></ng-container>
+          </div>
+          <div class="form-group col-md-6">
+            <div class="custom-file" style="margin-top: 6%;">
+              <input type="file" name="file_input" formControlName="file_input" class="custom-file-input" id="customFile" (change)="fileChange($event)">
+              <label class="custom-file-label" for="customFile">Upload here to Book Cover Image</label>
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Cover Image is required',
+                control: bookAddForm.controls['file_input']
+              }"></ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-right">
+          <a routerLink="/author-dashboard" class="btn btn-secondary mr-2">Back</a>
+          <button type="submit" class="btn btn-primary" [disabled]="bookAddForm.invalid || contractTypeValid ||(isLoading$ | async)">Add Book</button>
+        </div>
+      </form>
+      <ng-template #formError let-control="control" let-message="message" let-validation="validation">
+        <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+            <div class="fv-plugins-message-container">
+                <span role="alert" style="color: red;">
+            {{ message }}
+          </span>
+            </div>
+        </ng-container>
+    </ng-template>
+    </div>
+  </div>
+</div>
