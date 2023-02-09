@@ -73,8 +73,7 @@ export class RegisterComponent {
         '',
         Validators.compose([
           Validators.required,
-          Validators.minLength(8),//change this to 8
-          Validators.maxLength(8),
+          Validators.minLength(8)
         ]),
       ],
     });
@@ -90,17 +89,12 @@ export class RegisterComponent {
     });
     const newUser = new UserModel();
     newUser.setUser(result);
-    console.log(newUser);
 
     const registrationSubscr = this.authService
       .registration(newUser)
       .pipe(first())
       .subscribe((result: Config) => {
-        console.log(result);
         if (result.error==false) {
-          //if form was submitted successfully
-          // let element: HTMLElement = document.getElementsByClassName('claerbtn')[0] as HTMLElement;
-          // element.click();
           this.hasSuccess = true;
           this.message = result.message;
           Swal.fire({

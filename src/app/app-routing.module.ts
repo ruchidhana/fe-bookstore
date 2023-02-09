@@ -7,15 +7,16 @@ import { LandpageComponent } from './components/landpage/landpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ViewUploadedBookComponent } from './components/view-uploaded-book/view-uploaded-book.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {path:'',component:LandpageComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'admin-dashboard',component:AdminDashboardComponent},
-  {path:'author-dashboard',component:AuthorDashboardComponent},
-  {path:'add_book',component:AddBookComponent},
-  {path:'view_book',component:ViewUploadedBookComponent},
+  {path:'admin-dashboard',component:AdminDashboardComponent,canActivate:[AuthGuard]},
+  {path:'author-dashboard',component:AuthorDashboardComponent,canActivate:[AuthGuard]},
+  {path:'add_book',component:AddBookComponent,canActivate:[AuthGuard]},
+  {path:'view_book',component:ViewUploadedBookComponent,canActivate:[AuthGuard]},
 ];
 
 @NgModule({

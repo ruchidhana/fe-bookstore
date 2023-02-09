@@ -1,7 +1,10 @@
   <div class="global-container">
     <div class="card login-form">
+    <img src="assets\267-2677213_book-club-logo-removebg-preview.png"
+    style="margin: 0 auto;" width="35%" height="35%" class="img-fluid" alt="Logo">
+
     <div class="card-body">
-      <h3 class="card-title text-center">Log in to Codepen</h3>
+      <h3 class="card-title text-center">Log in to BookStore</h3>
       <div class="card-text">
         <!--
         <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
@@ -26,16 +29,6 @@
               control: loginForm.controls['password']
             }"></ng-container>
 
-            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-            validation: 'minlength',
-            message: 'Password should have at least 8 symbols',
-            control: loginForm.controls['password']
-          }"></ng-container>
-            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-            validation: 'maxlength',
-            message: 'Password should have maximum 15 symbols',
-            control: loginForm.controls['password']
-          }"></ng-container>
           </div>
           <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Sign in</button>
 

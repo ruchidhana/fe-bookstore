@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private http: HttpClient
   ) {
-
+    sessionStorage.clear();
   }
   ngOnInit(): void {
     this.initForm();
@@ -68,16 +68,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         '',
         Validators.compose([
           Validators.required,
-          Validators.minLength(8),//change this to 8
-          Validators.maxLength(8),
         ]),
       ],
     });
   }
 
   submit() {
-    localStorage.setItem('reset_message', 'false');
-    this.hasMessage = false;
+    // localStorage.setItem('reset_message', 'false');
+    // this.hasMessage = false;
 
     const loginSubscr = this.authService
       .login(this.f.email.value, this.f.password.value)
@@ -86,11 +84,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         const currentUser = this.authService.currentUserValue;
         let email = currentUser?.email!;
-        localStorage.setItem("email",email);
 
         if (user) {
+          localStorage.setItem("email",user.email);
+          localStorage.setItem("role",user.role_name);
           const auth = this.authService.getAuthFromLocalStorage();
-          console.log(auth);
 
           if (currentUser?.role_name =="Author") {
             this.router.navigate(['author-dashboard']);
@@ -101,17 +99,14 @@ export class LoginComponent implements OnInit, OnDestroy {
           }
 
         } else {
-          console.log("erro");
 
           const lsValue = localStorage.getItem('login');
-          console.log(lsValue);
 
           if (!lsValue) {
             return undefined;
           }
 
           const authData = JSON.parse(lsValue);
-          //console.log(authData);
 
           if (authData.error == true) {
             this.toastr.error(authData.message);

@@ -56,8 +56,6 @@ export class AddBookComponent {
       this.filename = 'No any uploaded Slip';
     }
     else {
-      console.log("awa");
-
       this.bookAddForm.patchValue({
         fileSource: file_name
       });
@@ -116,7 +114,6 @@ export class AddBookComponent {
     //   [key: string]: string;
     // } = {};
     let email=localStorage.getItem("email");
-    console.log("emmail is",email);
 
     const u_id = this.authService.currentUserValue?.u_id;
     var title = this.f.title.value;
@@ -144,13 +141,14 @@ export class AddBookComponent {
     // formData.append('title', this.bookAddForm.get('title')?.value);
     // formData.append('cover_image', this.bookAddForm.get('file_input')?.value);
     this.authService.slipPath(myFormData).subscribe(res => {
+
       if (res.error == true) {
         Swal.fire({
           icon: 'error',
           title: 'Error',
           text: res.message,
         })
-        this.router.navigate(['/author-dashboard']);
+
       } else {
         Swal.fire({
           title: 'Success',

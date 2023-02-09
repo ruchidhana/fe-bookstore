@@ -20,7 +20,7 @@
               <input type="text" name="isbn" formControlName="isbn" class="form-control" id="isbn" placeholder="ISBN">
               <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
                 validation: 'required',
-                message: 'Title is required',
+                message: 'ISBN is required',
                 control: bookAddForm.controls['title']
               }"></ng-container>
             </div>
@@ -42,7 +42,7 @@
           <div class="form-group col-md-6">
             <div class="custom-file" style="margin-top: 6%;">
               <input type="file" name="file_input" formControlName="file_input" class="custom-file-input" id="customFile" (change)="fileChange($event)">
-              <label class="custom-file-label" for="customFile">Upload here to Book Cover Image</label>
+              <label class="custom-file-label" for="customFile">Upload here to Book Cover Image {{ filename | uppercase}}</label>
               <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
                 validation: 'required',
                 message: 'Cover Image is required',

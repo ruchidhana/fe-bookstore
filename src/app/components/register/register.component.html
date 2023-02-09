@@ -1,86 +1,142 @@
 <div class="global-container">
   <div class="card login-form">
-  <div class="card-body">
-    <h3 class="card-title text-center">Register a Author</h3>
-    <div class="card-text">
-      <!--
+    <div class="card-body">
+      <h3 class="card-title text-center">Register a Author</h3>
+      <div class="card-text">
+        <!--
       <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
-      <form [formGroup]="registerForm" novalidate="novalidate" id="kt_login_signin_form" (ngSubmit)="submit()">
-        <!-- to error: add class "has-danger" -->
-        <div class="form-group">
-          <label for="exampleInputEmail1">First Name</label>
-          <input type="text" name="first_name" formControlName="first_name" class="form-control form-control-sm" id="first_name" aria-describedby="emailHelp">
-          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-            validation: 'required',
-            message: 'First Name is required',
-            control: registerForm.controls['first_name']
-          }"></ng-container>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Last Name</label>
-          <input type="text" name="last_name" formControlName="last_name" class="form-control form-control-sm" id="last_name" aria-describedby="emailHelp">
-          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-            validation: 'required',
-            message: 'Last Name is required',
-            control: registerForm.controls['last_name']
-          }"></ng-container>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">No. Of All Published Books</label>
-          <input type="number" name="no_of_published_books" formControlName="no_of_published_books" class="form-control form-control-sm" id="no_of_published_books" aria-describedby="emailHelp">
-          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-            validation: 'required',
-            message: 'No. Of All Published Books is required',
-            control: registerForm.controls['no_of_published_books']
-          }"></ng-container>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" name="email" formControlName="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp">
-          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-            validation: 'required',
-            message: 'Email address is required',
-            control: registerForm.controls['email']
-          }"></ng-container>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" name="password" formControlName="password" class="form-control form-control-sm" id="password">
-          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-            validation: 'required',
-            message: 'Password is required',
-            control: registerForm.controls['password']
-          }"></ng-container>
+        <form
+          [formGroup]="registerForm"
+          novalidate="novalidate"
+          id="kt_login_signin_form"
+          (ngSubmit)="submit()"
+        >
+          <!-- to error: add class "has-danger" -->
+          <div class="form-group">
+            <label for="exampleInputEmail1">First Name</label>
+            <input
+              type="text"
+              name="first_name"
+              formControlName="first_name"
+              class="form-control form-control-sm"
+              id="first_name"
+              aria-describedby="emailHelp"
+            />
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'First Name is required',
+                control: registerForm.controls['first_name']
+              }"
+            ></ng-container>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Last Name</label>
+            <input
+              type="text"
+              name="last_name"
+              formControlName="last_name"
+              class="form-control form-control-sm"
+              id="last_name"
+              aria-describedby="emailHelp"
+            />
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Last Name is required',
+                control: registerForm.controls['last_name']
+              }"
+            ></ng-container>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">No. Of All Published Books</label>
+            <input
+              type="number"
+              name="no_of_published_books"
+              formControlName="no_of_published_books"
+              class="form-control form-control-sm"
+              id="no_of_published_books"
+              aria-describedby="emailHelp"
+            />
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'No. Of All Published Books is required',
+                control: registerForm.controls['no_of_published_books']
+              }"
+            ></ng-container>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input
+              type="email"
+              name="email"
+              formControlName="email"
+              class="form-control form-control-sm"
+              id="email"
+              aria-describedby="emailHelp"
+            />
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Email address is required',
+                control: registerForm.controls['email']
+              }"
+            ></ng-container>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input
+              type="password"
+              name="password"
+              formControlName="password"
+              class="form-control form-control-sm"
+              id="password"
+            />
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Password is required',
+                control: registerForm.controls['password']
+              }"
+            ></ng-container>
 
-          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-          validation: 'minlength',
-          message: 'Password should have at least 8 symbols',
-          control: registerForm.controls['password']
-        }"></ng-container>
-          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-          validation: 'maxlength',
-          message: 'Password should have maximum 15 symbols',
-          control: registerForm.controls['password']
-        }"></ng-container>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid">Register</button>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'minlength',
+                message: 'Password should have at least 8 symbols',
+                control: registerForm.controls['password']
+              }"
+            ></ng-container>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            [disabled]="registerForm.invalid"
+          >
+            Register
+          </button>
 
-        <div class="sign-up">
-          Already have an account? <a routerLink="/login">Login</a>
-        </div>
-      </form>
-      <ng-template #formError let-control="control" let-message="message" let-validation="validation">
-        <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+          <div class="sign-up">
+            Already have an account? <a routerLink="/login">Login</a>
+          </div>
+        </form>
+        <ng-template #formError let-control="control" let-message="message" let-validation="validation">
+          <ng-container *ngIf=" control.hasError(validation) && (control.dirty || control.touched)">
             <div class="fv-plugins-message-container">
-                <span role="alert" style="color: red;">
-            {{ message }}
-          </span>
+              <span role="alert" style="color: red">
+                {{ message }}
+              </span>
             </div>
-        </ng-container>
-    </ng-template>
+          </ng-container>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
-

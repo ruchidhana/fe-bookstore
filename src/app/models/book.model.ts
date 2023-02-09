@@ -7,7 +7,7 @@ export class BookModel {
   description: string;
   isbn: string;
   cover_image: File;
-
+  author:any
   setBook(_book: unknown) {
     const book = _book as BookModel;
     this.price = book.price;

@@ -27,7 +27,6 @@ export class AdminDashboardComponent {
 
   toggle(event:any,i: any) {
     event.preventDefault();
-    console.log(i.id,i.is_active);
     this.abc(i.id,i.is_active);
 
   }

@@ -46,7 +46,6 @@ export class AuthService {
 
     return this.authHttpService.login(email, password).pipe(
       map((auth: AuthModel) => {
-        console.log(auth);
         const result = this.setAuthFromLocalStorage(auth);
 
 
@@ -114,29 +113,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return this.isValidToken();
-  }
-
-  // Verify the token
-  isValidToken() {
-    const token = this.getToken();
-
-    if (token) {
-      const payload = this.payload(token);
-      if (payload) {
-        return Object.values(this.issuer).indexOf(payload.iss) > -1
-          ? true
-          : false;
-      }
-    } else {
-      return false;
-    }
-  }
-
-
-  payload(token: any) {
-    const jwtPayload = token.split('.')[1];
-    return JSON.parse(atob(jwtPayload));
+    return localStorage.getItem('email')!=null;
   }
 
   getToken() {
@@ -194,6 +171,11 @@ export class AuthService {
       }),
 
     );
+  }
+
+  getRole()
+  {
+    return localStorage.getItem("role");
   }
 
   logout() {
